@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Deletion Request — Kinnavi (勤ナビ)</title>
+  <meta name="description" content="Request deletion of your personal data from the Kinnavi workforce attendance platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink:       #1a1a1e;
+      --ink-mid:   #4a4a52;
+      --ink-light: #8a8a96;
+      --rule:      #e0deda;
+      --accent:    #b85c38;
+      --accent-bg: #fdf6f3;
+      --bg:        #faf9f7;
+      --surface:   #ffffff;
+      --mono:      'DM Mono', monospace;
+      --serif:     'Noto Serif JP', serif;
+      --sans:      'Noto Sans JP', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.85;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      padding: 3rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '勤ナビ';
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: 9rem;
+      font-weight: 600;
+      color: var(--rule);
+      pointer-events: none;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+      position: relative;
+    }
+
+    .breadcrumb {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+    }
+
+    .breadcrumb a {
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .breadcrumb .sep {
+      margin: 0 0.4rem;
+      color: var(--rule);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-bg);
+      border: 1px solid #e8c4b4;
+      border-radius: 2px;
+      padding: 0.25rem 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      line-height: 1.25;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink-mid);
+      font-weight: 300;
+    }
+
+    .meta {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .meta-value {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--ink-mid);
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    section:nth-child(1)  { animation-delay: 0.05s; }
+    section:nth-child(2)  { animation-delay: 0.10s; }
+    section:nth-child(3)  { animation-delay: 0.15s; }
+    section:nth-child(4)  { animation-delay: 0.20s; }
+    section:nth-child(5)  { animation-delay: 0.25s; }
+    section:nth-child(6)  { animation-delay: 0.30s; }
+    section:nth-child(7)  { animation-delay: 0.35s; }
+    section:nth-child(8)  { animation-delay: 0.40s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+
+    p {
+      color: var(--ink-mid);
+      font-size: 0.92rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+      counter-reset: step;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--ink-mid);
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+    }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    ol li {
+      position: relative;
+      padding-left: 2.5rem;
+      color: var(--ink-mid);
+      font-size: 0.92rem;
+      margin-bottom: 0.9rem;
+      counter-increment: step;
+    }
+
+    ol li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid #e8c4b4;
+      border-radius: 2px;
+      padding: 0.15rem 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .callout {
+      background: var(--accent-bg);
+      border: 1px solid #e8c4b4;
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+    }
+
+    .callout strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .what-gets-deleted {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 540px) {
+      .what-gets-deleted { grid-template-columns: 1fr; }
+    }
+
+    .delete-card {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1rem;
+      background: var(--surface);
+    }
+
+    .delete-card h3 {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .delete-card ul li {
+      font-size: 0.82rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .email-box {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .email-box .field {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      font-size: 0.88rem;
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    .email-box .field:last-child { border-bottom: none; }
+
+    .email-box .field-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .email-box .field-value {
+      color: var(--ink-mid);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      word-break: break-all;
+    }
+
+    .email-box .field-value.plain {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+
+    .email-box a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .email-box a:hover { text-decoration: underline; }
+
+    .button-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid var(--accent);
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #9a4a2d;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-bg);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--ink-light);
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 540px) {
+      header::before { font-size: 5rem; opacity: 0.5; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="header-inner">
+    <div class="breadcrumb">
+      <a href="/">privacy.scientlabs.dev</a>
+      <span class="sep">/</span>
+      <span>data-deletion</span>
+    </div>
+    <div class="badge">Data Request</div>
+    <h1>Data Deletion Request</h1>
+    <div class="subtitle">勤ナビ (Kinnavi) — Workforce Attendance App</div>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Operator</span>
+        <span class="meta-value">Scient Labs</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Last updated</span>
+        <span class="meta-value">April 17, 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Response time</span>
+        <span class="meta-value">7 business days</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Main ── -->
+<main>
+
+  <!-- 1 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>About Your Kinnavi Account</h2>
+    </div>
+    <div class="callout">
+      <strong>Important:</strong> Kinnavi is a <strong>B2B workplace application</strong>. Your account was provisioned by your employer, and your attendance data is owned and controlled by your employer (the data controller). Scient Labs processes data on your employer's behalf under a service agreement.
+    </div>
+    <p style="margin-top: 1rem;">This page explains how to request deletion of your personal data from the Kinnavi system. For the full privacy terms, see our <a href="/" style="color: var(--accent); text-decoration: none;">Privacy Policy</a>.</p>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Immediate Local Data Deletion</h2>
+    </div>
+    <p>You can <strong>immediately remove all Kinnavi data from your device</strong> — authentication tokens, stored credentials, and session state — at any time without contacting anyone:</p>
+    <ul>
+      <li>Open the Kinnavi app and tap <strong>「サインアウト」 (Sign Out)</strong></li>
+      <li>Uninstall the Kinnavi app from your device</li>
+      <li>Go to device Settings → Apps → Kinnavi → Storage → Clear data</li>
+    </ul>
+    <p>These actions remove all locally stored data from your device. Data stored on the Kinnavi server is not affected by these actions and must be requested separately (see below).</p>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Server-Side Data Deletion Request</h2>
+    </div>
+    <p>To request deletion of your personal data from the Kinnavi server, send an email with the following details:</p>
+
+    <div class="email-box">
+      <div class="field">
+        <span class="field-label">To</span>
+        <span class="field-value"><a href="mailto:info@scient-labs.com?subject=Kinnavi%20Data%20Deletion%20Request">info@scient-labs.com</a></span>
+      </div>
+      <div class="field">
+        <span class="field-label">Subject</span>
+        <span class="field-value">Kinnavi Data Deletion Request</span>
+      </div>
+      <div class="field">
+        <span class="field-label">Include</span>
+        <span class="field-value plain">
+          • Your registered email address<br />
+          • Your full name<br />
+          • Your employer's company name<br />
+          • Your employee ID (if known)<br />
+          • Reason for deletion (optional)
+        </span>
+      </div>
+    </div>
+
+    <p><strong>The request must be sent from the email address registered with your 勤ナビ(Kinnavi account)</strong> so we can verify your identity.</p>
+
+    <div class="button-bar">
+      <a href="mailto:info@scient-labs.com?subject=Kinnavi%20Data%20Deletion%20Request&body=Name%3A%20%0AEmployer%20(Company)%3A%20%0AEmployee%20ID%3A%20%0AReason%20(optional)%3A%20%0A%0A---%0ASent%20via%20privacy.scientlabs.dev%2Fdata-deletion" class="btn">Send Deletion Request</a>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Deletion Process &amp; Timeline</h2>
+    </div>
+    <ol>
+      <li><strong>Acknowledgement (within 7 business days):</strong> We confirm receipt of your request by email.</li>
+      <li><strong>Employer authorization:</strong> Because your data is controlled by your employer, we forward the request to your employer's designated administrator for authorization. This ensures lawful deletion that respects both your rights and your employer's record-keeping obligations.</li>
+      <li><strong>Deletion (within 30 days of authorization):</strong> Once authorized, we permanently delete the eligible data from our production systems. Backups containing the data are purged on the next backup rotation cycle.</li>
+      <li><strong>Confirmation:</strong> We email you when deletion is complete.</li>
+    </ol>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>What Gets Deleted &amp; What Is Retained</h2>
+    </div>
+
+    <div class="what-gets-deleted">
+      <div class="delete-card">
+        <h3>✓ Deleted</h3>
+        <ul>
+          <li>User account and authentication credentials</li>
+          <li>Personal identification (name, email, phone number)</li>
+          <li>Employee ID linkage to personal identity</li>
+          <li>Location coordinates from clock-in/out events</li>
+          <li>Device tokens and session data</li>
+        </ul>
+      </div>
+      <div class="delete-card">
+        <h3>✕ Retained (Anonymized)</h3>
+        <ul>
+          <li>Aggregated attendance records required by Japanese labor law (typically 3–7 years, then deleted)</li>
+          <li>Audit logs (security / fraud prevention)</li>
+          <li>Anonymized statistical data with no personally identifiable information</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>Retained data is either anonymized so it cannot be linked to you, or held strictly for the period required by Japanese labor law before final deletion. Once statutory retention periods expire, this data is also permanently deleted.</p>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Alternative: Contact Your Employer Directly</h2>
+    </div>
+    <p>Because your employer is the data controller for your 勤ナビ(Kinnavi) account, you may also direct deletion requests to your company's HR or IT department. They can instruct Scient Labs to delete your data through our internal B2B administration channels, which is often the fastest path.</p>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Escalation &amp; Regulatory Rights</h2>
+    </div>
+    <p>If you are not satisfied with how your deletion request is handled, you have the right to lodge a complaint with Japan's <strong>Personal Information Protection Commission (PPC)</strong>.</p>
+    <div class="button-bar">
+      <a href="https://www.ppc.go.jp/en/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Contact PPC (Japan)</a>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2>Contact</h2>
+    </div>
+    <p>Data Protection Contact at Scient Labs — <a href="mailto:info@scient-labs.com" style="color: var(--accent); text-decoration: none;">info@scient-labs.com</a></p>
+    <p>Related: <a href="/" style="color: var(--accent); text-decoration: none;">Privacy Policy</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Scient Labs. All rights reserved.</p>
+  <p><a href="/">Privacy Policy</a> · Kinnavi (勤ナビ)</p>
+</footer>
+
+</body>
+</html>
