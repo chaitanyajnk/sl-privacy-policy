@@ -24,7 +24,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -37,7 +36,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Header ── */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--rule);
@@ -138,7 +136,6 @@
       color: var(--ink-mid);
     }
 
-    /* ── Nav ── */
     nav {
       background: var(--surface);
       border-bottom: 1px solid var(--rule);
@@ -171,14 +168,12 @@
       border-bottom-color: var(--accent);
     }
 
-    /* ── Main ── */
     main {
       max-width: 760px;
       margin: 0 auto;
       padding: 3rem 2rem 5rem;
     }
 
-    /* ── Sections ── */
     section {
       margin-bottom: 3rem;
       animation: fadeUp 0.4s ease both;
@@ -196,6 +191,7 @@
     section:nth-child(10) { animation-delay: 0.50s; }
     section:nth-child(11) { animation-delay: 0.55s; }
     section:nth-child(12) { animation-delay: 0.60s; }
+    section:nth-child(13) { animation-delay: 0.65s; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -227,7 +223,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* ── Subsections ── */
     .subsection {
       margin-bottom: 1.25rem;
       padding-left: 1.25rem;
@@ -251,7 +246,6 @@
 
     p:last-child { margin-bottom: 0; }
 
-    /* ── Lists ── */
     ul {
       list-style: none;
       padding: 0;
@@ -274,7 +268,6 @@
       font-family: var(--mono);
     }
 
-    /* ── Callout ── */
     .callout {
       background: var(--accent-bg);
       border: 1px solid #e8c4b4;
@@ -290,7 +283,44 @@
       font-weight: 500;
     }
 
-    /* ── Contact card ── */
+    .role-table {
+      display: grid;
+      gap: 0;
+      margin: 0.75rem 0;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .role-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .role-row:last-child { border-bottom: none; }
+
+    .role-label {
+      background: var(--accent-bg);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      padding: 0.7rem 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .role-desc {
+      padding: 0.7rem 0.9rem;
+      color: var(--ink-mid);
+    }
+
+    @media (max-width: 540px) {
+      .role-row { grid-template-columns: 1fr; }
+    }
+
     .contact-card {
       background: var(--surface);
       border: 1px solid var(--rule);
@@ -331,7 +361,6 @@
 
     .contact-row a:hover { text-decoration: underline; }
 
-    /* ── Permissions table ── */
     .perm-table {
       display: grid;
       gap: 0.5rem;
@@ -364,7 +393,6 @@
       .perm-row { grid-template-columns: 1fr; gap: 0.2rem; }
     }
 
-    /* ── Footer ── */
     footer {
       border-top: 1px solid var(--rule);
       padding: 1.5rem 2rem;
@@ -385,7 +413,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── Responsive ── */
     @media (max-width: 540px) {
       header::before { font-size: 5rem; opacity: 0.5; }
       .nav-inner { gap: 0; }
@@ -396,12 +423,11 @@
 </head>
 <body>
 
-<!-- ── Header ── -->
 <header>
   <div class="header-inner">
     <div class="badge">Legal Document</div>
     <h1>Privacy Policy</h1>
-    <div class="subtitle">Kinnavi (勤ナビ) Attendance App</div>
+    <div class="subtitle">Kinnavi (勤ナビ) — Workforce Attendance Platform</div>
     <div class="meta">
       <div class="meta-item">
         <span class="meta-label">Issued by</span>
@@ -413,60 +439,95 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Version</span>
-        <span class="meta-value">1.1</span>
+        <span class="meta-value">2.0</span>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ── Nav ── -->
 <nav aria-label="Section navigation">
   <div class="nav-inner">
-    <a href="#s1">1. Collection</a>
-    <a href="#s2">2. Permissions</a>
-    <a href="#s3">3. Usage</a>
-    <a href="#s4">4. Sharing</a>
-    <a href="#s5">5. Security</a>
-    <a href="#s6">6. Retention</a>
-    <a href="#s7">7. Deletion</a>
-    <a href="#s8">8. Rights</a>
-    <a href="#s9">9. Children</a>
-    <a href="#s10">10. International</a>
-    <a href="#s11">11. Changes</a>
-    <a href="#s12">12. Contact</a>
+    <a href="#s1">1. About</a>
+    <a href="#s2">2. Roles</a>
+    <a href="#s3">3. Collection</a>
+    <a href="#s4">4. Permissions</a>
+    <a href="#s5">5. Usage</a>
+    <a href="#s6">6. Sharing</a>
+    <a href="#s7">7. Security</a>
+    <a href="#s8">8. Retention</a>
+    <a href="#s9">9. Deletion</a>
+    <a href="#s10">10. Rights</a>
+    <a href="#s11">11. Children</a>
+    <a href="#s12">12. International</a>
+    <a href="#s13">13. Contact</a>
   </div>
 </nav>
 
-<!-- ── Main ── -->
 <main>
 
   <!-- 1 -->
   <section id="s1">
     <div class="section-header">
       <span class="section-num">01</span>
+      <h2>About This Policy</h2>
+    </div>
+    <p>Kinnavi (勤ナビ) is a business-to-business (B2B) workforce attendance platform provided by Scient Labs to employer organizations ("Client Companies"). The App is used by employees of our Client Companies to record clock-in and clock-out events during their work.</p>
+    <p>This Privacy Policy explains what personal information the App collects, how it is used, and how it is protected. It applies to employees ("you", "users") of Client Companies who have been provisioned a Kinnavi account by their employer.</p>
+  </section>
+
+  <!-- 2 -->
+  <section id="s2">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Data Controller &amp; Data Processor Roles</h2>
+    </div>
+    <div class="callout">
+      Kinnavi operates under a <strong>data controller / data processor model</strong>. Your employer is the data controller of your personal information. Scient Labs processes your data on behalf of your employer under a written service agreement.
+    </div>
+    <div class="role-table" style="margin-top: 1rem;">
+      <div class="role-row">
+        <div class="role-label">Data Controller</div>
+        <div class="role-desc">Your employer (the Client Company that provisioned your account). Determines the purpose and means of data processing. Responsible for lawful basis and employee notice.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-label">Data Processor</div>
+        <div class="role-desc">Scient Labs. Processes data strictly on the employer's written instructions for the purpose of providing the Kinnavi service.</div>
+      </div>
+      <div class="role-row">
+        <div class="role-label">Data Subject</div>
+        <div class="role-desc">You (the employee using the App).</div>
+      </div>
+    </div>
+    <p style="margin-top: 1rem;">For most requests regarding your personal data (access, correction, deletion), you should contact your employer's HR or IT department, who will instruct Scient Labs accordingly. You may also contact Scient Labs directly using the details in Section 13; we will coordinate with your employer to fulfill your request.</p>
+  </section>
+
+  <!-- 3 -->
+  <section id="s3">
+    <div class="section-header">
+      <span class="section-num">03</span>
       <h2>Information We Collect</h2>
     </div>
 
     <div class="subsection">
-      <div class="subsection-title">1.1 Account Information</div>
-      <p>When you sign in, we collect your email address and password to authenticate your identity. Your name and employee ID are retrieved from your organization's employee management system linked to your account.</p>
+      <div class="subsection-title">3.1 Account Information</div>
+      <p>When you sign in, the App collects your email address and password to authenticate your identity. Your name and employee ID are retrieved from your employer's workforce records that have been registered in the Kinnavi platform.</p>
     </div>
 
     <div class="subsection">
-      <div class="subsection-title">1.2 Location Data (Precise)</div>
-      <p>When you clock in or clock out, the App collects your precise GPS location (latitude and longitude). Location is collected <strong>only at the moment of clock-in or clock-out</strong> — the App does not continuously track your location in the background.</p>
+      <div class="subsection-title">3.2 Location Data (Precise)</div>
+      <p>When you clock in or clock out, the App collects your precise GPS location (latitude and longitude) for attendance verification purposes. Location is collected <strong>only at the moment you tap Clock In or Clock Out</strong> — the App does not continuously track your location in the background.</p>
     </div>
 
     <div class="subsection">
-      <div class="subsection-title">1.3 Attendance Records</div>
-      <p>We record the timestamp and location coordinates of each clock-in and clock-out event, along with your employee ID.</p>
+      <div class="subsection-title">3.3 Attendance Records</div>
+      <p>The App records the timestamp and location coordinates of each clock-in and clock-out event, linked to your employee ID.</p>
     </div>
 
     <div class="subsection">
-      <div class="subsection-title">1.4 Local Device Storage</div>
-      <p>The App stores the following data locally on your device in <strong>encrypted app-private storage</strong> (not accessible to other applications):</p>
+      <div class="subsection-title">3.4 Local Device Storage</div>
+      <p>The App stores the following data locally on your device in encrypted app-private storage (not accessible to other applications):</p>
       <ul>
-        <li>Authentication tokens (access token, refresh token)</li>
+        <li>Authentication tokens</li>
         <li>Your email address and password (encrypted) — used to automatically re-authenticate when your session expires, so you do not need to sign in repeatedly</li>
         <li>Your user ID and linked employee ID</li>
         <li>Current clock-in status</li>
@@ -475,10 +536,10 @@
     </div>
   </section>
 
-  <!-- 2 — NEW: Permissions -->
-  <section id="s2">
+  <!-- 4 -->
+  <section id="s4">
     <div class="section-header">
-      <span class="section-num">02</span>
+      <span class="section-num">04</span>
       <h2>Android Permissions</h2>
     </div>
     <p>The App requests the following Android permissions:</p>
@@ -501,150 +562,156 @@
       </div>
       <div class="perm-row">
         <div class="perm-name">INTERNET</div>
-        <div class="perm-desc">Required to communicate with our backend server for authentication and attendance recording.</div>
+        <div class="perm-desc">Required to communicate with the Kinnavi backend server for authentication and attendance recording.</div>
       </div>
     </div>
-    <p>You may revoke any of these permissions at any time through your device's Settings. Revoking location permission will prevent the App from recording new attendance entries, but previously recorded attendance remains unaffected.</p>
-  </section>
-
-  <!-- 3 -->
-  <section id="s3">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>How We Use Your Information</h2>
-    </div>
-    <p>We use the collected information solely for the following purposes:</p>
-    <ul>
-      <li>Authenticating your identity and managing your session</li>
-      <li>Recording attendance with location verification</li>
-      <li>Displaying your attendance status within the App</li>
-      <li>Automatically restoring your session after it expires (to improve user experience)</li>
-      <li>Providing your employer with attendance data for payroll and workforce management purposes</li>
-    </ul>
-    <p><strong>We do not use your data for advertising, profiling, or any purpose not listed above.</strong></p>
-  </section>
-
-  <!-- 4 -->
-  <section id="s4">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>Data Sharing</h2>
-    </div>
-    <div class="callout">
-      <strong>We do NOT sell, rent, or trade</strong> your personal information to any third party. We do not share data with advertisers or analytics providers.
-    </div>
-    <p style="margin-top: 1rem;">Your data is transmitted exclusively to the Kinnavi backend server operated by Scient Labs and made available to your employer (the organization that provided your account) for legitimate workforce management purposes.</p>
-    <p>The App uses Google Play Services on your device to obtain location readings. No personal data or location data is shared with Google through this usage — Google Play Services operates locally on your device.</p>
+    <p>You may revoke any permission at any time through your device's Settings. Revoking location permission will prevent the App from recording new attendance entries, but previously recorded attendance remains unaffected.</p>
   </section>
 
   <!-- 5 -->
   <section id="s5">
     <div class="section-header">
       <span class="section-num">05</span>
-      <h2>Data Security</h2>
+      <h2>How Your Information Is Used</h2>
     </div>
+    <p>Your data is processed solely for the following purposes defined by your employer:</p>
     <ul>
-      <li><strong>In transit:</strong> All data transmitted between the App and our server is encrypted using HTTPS/TLS.</li>
-      <li><strong>On device:</strong> Authentication tokens and credentials are stored using Android's EncryptedSharedPreferences (AES-256 encryption), within the app's sandboxed private storage.</li>
-      <li><strong>On server:</strong> Passwords are hashed using industry-standard algorithms before storage. Data is protected by access controls and security monitoring.</li>
+      <li>Authenticating your identity and managing your session</li>
+      <li>Recording attendance with location verification</li>
+      <li>Displaying your attendance status within the App</li>
+      <li>Automatically restoring your session after it expires</li>
+      <li>Providing your employer with attendance data for workforce management, payroll, and statutory compliance</li>
     </ul>
-    <p>However, no method of transmission or storage is 100% secure. We cannot guarantee absolute security.</p>
+    <div class="callout" style="margin-top: 1rem;">
+      <strong>We do not use your data</strong> for advertising, profiling, analytics, machine learning training, or any purpose not authorized by your employer.
+    </div>
   </section>
 
   <!-- 6 -->
   <section id="s6">
     <div class="section-header">
       <span class="section-num">06</span>
-      <h2>Data Retention</h2>
+      <h2>Data Sharing</h2>
     </div>
+    <p>Scient Labs does not sell, rent, or trade your personal information. Your data is shared only in the following circumstances:</p>
     <ul>
-      <li><strong>Local data:</strong> Retained on your device until you sign out, at which point all stored tokens, credentials, and session data are permanently deleted.</li>
-      <li><strong>Attendance records:</strong> Retained on our server in accordance with your employer's data retention policy and applicable labor laws (typically 3–7 years under Japanese labor law).</li>
-      <li><strong>Account data:</strong> Retained while your account remains active. Deleted within 30 days of account deletion request, subject to legal retention obligations.</li>
+      <li><strong>With your employer:</strong> Your attendance records, location at clock-in/out, and account data are accessible to authorized personnel at your employer (e.g., HR, administrators, line managers) for workforce management purposes.</li>
+      <li><strong>With Scient Labs personnel:</strong> Authorized Scient Labs staff may access your data solely for technical support, maintenance, and security monitoring of the Kinnavi platform.</li>
+      <li><strong>With legal authorities:</strong> If required by law, court order, or regulatory request, subject to applicable legal protections.</li>
     </ul>
+    <p>The App uses Google Play Services locally on your device to obtain location readings. No personal or location data is transmitted to Google through this usage.</p>
   </section>
 
-  <!-- 7 — NEW: Data Deletion (Google Play requirement) -->
+  <!-- 7 -->
   <section id="s7">
     <div class="section-header">
       <span class="section-num">07</span>
-      <h2>Account &amp; Data Deletion</h2>
+      <h2>Data Security</h2>
     </div>
-    <div class="callout">
-      <strong>To request deletion of your account and personal data,</strong> please email <a href="mailto:info@scient-labs.com?subject=Kinnavi%20Data%20Deletion%20Request" style="color: var(--accent);">info@scient-labs.com</a> with the subject line "Kinnavi Data Deletion Request" from the email address registered with your Kinnavi account.
-    </div>
-    <p style="margin-top: 1rem;">Your request will be processed within 30 days. The following data will be deleted:</p>
     <ul>
-      <li>Your user account and authentication credentials</li>
-      <li>Personal identification information (name, email, employee ID linkage)</li>
-      <li>Location coordinates associated with your attendance records</li>
+      <li><strong>In transit:</strong> All data exchanged between the App and the Kinnavi server is encrypted using HTTPS/TLS.</li>
+      <li><strong>On device:</strong> Authentication tokens and credentials are stored using Android's EncryptedSharedPreferences (AES-256), inside the app's sandboxed private storage.</li>
+      <li><strong>On server:</strong> Passwords are hashed using industry-standard algorithms. Access to production data is restricted to authorized personnel, protected by access controls and audit logging.</li>
     </ul>
-    <p>The following data may be retained in anonymized form for legal compliance:</p>
-    <ul>
-      <li>Aggregated attendance records required by Japanese labor law (retained for statutory periods, then deleted)</li>
-      <li>System audit logs required for security and fraud prevention</li>
-    </ul>
-    <p>You may also sign out from within the App at any time to immediately delete all locally stored data from your device.</p>
+    <p>Despite these measures, no transmission or storage method is completely secure. We cannot guarantee absolute security but continuously work to protect your information.</p>
   </section>
 
   <!-- 8 -->
   <section id="s8">
     <div class="section-header">
       <span class="section-num">08</span>
+      <h2>Data Retention</h2>
+    </div>
+    <ul>
+      <li><strong>Local data:</strong> Retained on your device until you sign out, after which all stored tokens, credentials, and session data are permanently deleted.</li>
+      <li><strong>Attendance records:</strong> Retained on our server for the period specified in the contract between Scient Labs and your employer, typically aligned with Japanese labor law requirements (3–7 years).</li>
+      <li><strong>Account data:</strong> Retained while your employment relationship with the Client Company is active. After termination, data is retained or deleted according to your employer's instructions, subject to legal retention obligations.</li>
+    </ul>
+  </section>
+
+  <!-- 9 — Data Deletion (updated for B2B flow) -->
+  <section id="s9">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2>Account &amp; Data Deletion</h2>
+    </div>
+    <div class="callout">
+      Because your account is provisioned by your employer and your attendance data belongs to the employer as data controller, <strong>data deletion requests follow a B2B workflow</strong>: Scient Labs processes deletion only upon instruction from your employer.
+    </div>
+
+    <div class="subsection" style="margin-top: 1rem;">
+      <div class="subsection-title">9.1 Immediate Local Data Deletion</div>
+      <p>You can immediately delete all locally stored data (tokens, credentials, clock-in state) from your device at any time by:</p>
+      <ul>
+        <li>Tapping <strong>"サインアウト" (Sign Out)</strong> inside the App, or</li>
+        <li>Uninstalling the App, or</li>
+        <li>Clearing app data through your device's Settings &gt; Apps &gt; Kinnavi &gt; Storage</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">9.2 Server-Side Data Deletion Request</div>
+      <p>To request deletion of your personal data from our servers, submit a deletion request through our dedicated page:</p>
+      <p><a href="https://scient-labs.com/kinnavi/data-deletion" style="color: var(--accent); font-family: var(--mono); font-size: 0.88rem;">https://scient-labs.com/kinnavi/data-deletion</a></p>
+      <p>Alternatively, email <a href="mailto:info@scient-labs.com?subject=Kinnavi%20Data%20Deletion%20Request" style="color: var(--accent);">info@scient-labs.com</a> with the subject line "Kinnavi Data Deletion Request" from your registered email address.</p>
+      <p>Requests are processed as follows:</p>
+      <ul>
+        <li>We will acknowledge your request within 7 business days.</li>
+        <li>We will forward the request to your employer (the data controller) for authorization.</li>
+        <li>Upon employer authorization, we will delete the requested data within 30 days.</li>
+        <li>Certain data may be retained in anonymized form where required by Japanese labor law (e.g., aggregated attendance records for statutory periods) or for security audit logging. Such data cannot be used to identify you.</li>
+      </ul>
+      <p>If you believe your deletion request has not been appropriately addressed by your employer, you retain the right to escalate to Japan's Personal Information Protection Commission (PPC).</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section id="s10">
+    <div class="section-header">
+      <span class="section-num">10</span>
       <h2>Your Rights</h2>
     </div>
     <p>Under Japan's Act on the Protection of Personal Information (APPI) and other applicable laws, you have the right to:</p>
     <ul>
-      <li>Access your personal data held by us</li>
+      <li>Access your personal data</li>
       <li>Request correction of inaccurate data</li>
-      <li>Request deletion of your personal data (see Section 07)</li>
-      <li>Request a copy of your data in a portable format</li>
-      <li>Withdraw consent for data processing (may result in account termination)</li>
-      <li>Lodge a complaint with Japan's Personal Information Protection Commission (PPC)</li>
+      <li>Request deletion or suspension of use of your data</li>
+      <li>Request disclosure of the data we hold about you</li>
+      <li>Lodge a complaint with Japan's Personal Information Protection Commission</li>
     </ul>
-    <p>To exercise any of these rights, contact us using the details in Section 12.</p>
-  </section>
-
-  <!-- 9 -->
-  <section id="s9">
-    <div class="section-header">
-      <span class="section-num">09</span>
-      <h2>Children's Privacy</h2>
-    </div>
-    <p>The App is designed exclusively for workplace use by employed adults and is not intended for or directed at individuals under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected data from a child under 18, we will delete it promptly.</p>
-  </section>
-
-  <!-- 10 — NEW: International data transfer -->
-  <section id="s10">
-    <div class="section-header">
-      <span class="section-num">10</span>
-      <h2>International Data Transfers</h2>
-    </div>
-    <p>Our servers are located in Japan. If you access the App from outside Japan, your data will be transferred to and processed in Japan. By using the App, you consent to this transfer. We ensure adequate protection for cross-border data transfers in compliance with APPI requirements.</p>
+    <p>Because your employer is the data controller, please first direct these requests to your employer's HR or IT department. If your employer instructs us to act, we will respond promptly. You may also contact Scient Labs directly (Section 13), and we will coordinate the request with your employer.</p>
   </section>
 
   <!-- 11 -->
   <section id="s11">
     <div class="section-header">
       <span class="section-num">11</span>
-      <h2>Changes to This Policy</h2>
+      <h2>Children's Privacy</h2>
     </div>
-    <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page indicates the latest revision. Material changes will be communicated within the App or via email to the address on file. Continued use of the App after such changes constitutes acceptance of the updated policy.</p>
-    <p>This Privacy Policy is governed by the laws of Japan. Any disputes arising from or related to this policy shall be subject to the exclusive jurisdiction of the courts of Japan.</p>
+    <p>The App is designed exclusively for workplace use by employed adults (aged 18+) and is not intended for or directed at children. We do not knowingly collect personal information from individuals under 18. If we become aware that we have inadvertently collected data from a child, we will delete it promptly in consultation with the employer.</p>
   </section>
 
   <!-- 12 -->
   <section id="s12">
     <div class="section-header">
       <span class="section-num">12</span>
+      <h2>International Data Transfers</h2>
+    </div>
+    <p>Kinnavi servers are located in Japan. If you access the App from outside Japan, your data will be transferred to and processed in Japan. By using the App, you consent to this transfer. We ensure adequate protection for any cross-border data transfers in compliance with APPI requirements.</p>
+  </section>
+
+  <!-- 13 -->
+  <section id="s13">
+    <div class="section-header">
+      <span class="section-num">13</span>
       <h2>Contact Us</h2>
     </div>
-    <p>If you have questions about this Privacy Policy or wish to exercise your data rights, please contact:</p>
+    <p>For privacy questions or to exercise your rights, contact:</p>
     <div class="contact-card">
       <div class="contact-org">Scient Labs</div>
       <div class="contact-row">
         <span class="label">Role</span>
-        <span>Data Protection Contact</span>
+        <span>Data Protection Contact (Processor)</span>
       </div>
       <div class="contact-row">
         <span class="label">Email</span>
@@ -655,13 +722,15 @@
         <a href="https://scient-labs.com" target="_blank" rel="noopener noreferrer">https://scient-labs.com</a>
       </div>
     </div>
+    <p style="margin-top: 1rem;">For requests regarding your personal data, you may also contact your employer's HR or IT department directly, as your employer is the data controller.</p>
+    <p>This Privacy Policy is governed by the laws of Japan. Any disputes shall be subject to the exclusive jurisdiction of the courts of Japan.</p>
   </section>
 
 </main>
 
 <footer>
   <p>© 2026 Scient Labs. All rights reserved.</p>
-  <p>Kinnavi (勤ナビ) · Privacy Policy v1.1</p>
+  <p>Kinnavi (勤ナビ) · Privacy Policy v2.0</p>
 </footer>
 
 </body>
